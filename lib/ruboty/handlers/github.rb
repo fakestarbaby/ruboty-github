@@ -4,11 +4,18 @@ module Ruboty
       ISSUE_PATTERN = %r<(?:https?://[^/]+/)?(?<repo>.+)(?:#|/pull/|/issues/)(?<number>\d+) ?>
 
       env :GITHUB_BASE_URL, "Pass GitHub URL if needed (e.g. https://github.example.com)", optional: true
+      env :DEFAULT_REPO, "Default repository if needed (e.g. fakestarbaby/ruboty-github)", optional: true
 
       on(
         /create issue "(?<title>.+)" on (?<repo>.+)(?:\n(?<description>[\s\S]+))?\z/,
         name: "create_issue",
         description: "Create a new issue",
+      )
+
+      on(
+        /create issue "(?<title>.+)"(?:\n(?<description>[\s\S]+))?\z/,
+        name: "create_issue",
+        description: "Create a new issue using specified default repo",
       )
 
       on(

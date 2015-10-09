@@ -41,7 +41,7 @@ module Ruboty
         end
 
         def repository
-          message[:repo]
+          message[:repo] || ENV["DEFAULT_REPO"]
         end
 
         def client_options
